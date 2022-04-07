@@ -20,4 +20,15 @@ fn main() {
     println!("내부 스코프에서 y 변수의 값은: {}", y); // 12
   }
   println!("y 변수의 값은: {}", y); // 6
+
+  // Shadowing은 형변환하여 재선언이 가능하지만 `mut`는 불가하다.
+  let spaces = "   "; // 문자열
+
+  // spaces_len과 같은 대체 이름이 아닌 그대로 재선언이 가능하다.
+  let spaces = spaces.len(); // 숫자형
+  println!("공백 갯수는: {}", spaces);
+
+  // 즉, 다음은 불가함.
+  // let mut spaces2 = "   ";
+  // spaces2 = spaces2.len();
 }
