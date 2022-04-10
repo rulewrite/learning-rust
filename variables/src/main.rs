@@ -172,4 +172,40 @@ fn main() {
   let arr = [1, 2, 3, 4, 5];
   let first = arr[0]; // 1
   println!("first: {}", first);
+
+  // 2.2.2.2. 유효하지 않은 배열 요소에 접근할 경우
+  let arr = [1, 2, 3, 4, 5];
+
+  // 아래 코드는 `cargo run`시 컴파일은 가능하나 실행 중에 에러로 종료된다.
+  // let index = 10;
+  // let element = arr[index];
+  // println!("The value of element is: {}", element);
+
+  // 2장 추리게임과 유사한 코드를 실행
+  println!("Please enter an array index.");
+
+  let mut index = String::new();
+
+  io::stdin()
+    .read_line(&mut index)
+    .expect("Failed to read line");
+
+  let index: usize = index
+    .trim()
+    .parse()
+    .expect("Index entered was not a number");
+
+  let element = arr[index];
+
+  // 배열 길이를 넘아가는 인덱스를 입력할 시
+  // thread 'main' panicked at 'index out of bounds: the len is 5 but the index is {입력한 index}',
+  // 유효하지 않은 값을 사용하는 시점에서 런타임 오류가 발생하며 프로그램이 종료되었다.
+  println!(
+    "The value of the element at index {} is: {}",
+    index, element
+  );
+  // 러스트는 인덱스로 요소에 접근하려고 할 때 지정된 인덱스가 배열 길이에 맞는지 확인한다.
+  // 컴파일러는 사용자가 나중에 어떤 값을 입력할지 알 수 없기 때문에 이 경우는 런타임에 발생되었으며,
+  // 이는 러스트의 메모리 안전 원칙의 첫번째 예이다. 많은 저수준 언어에서는 이러한 검사가 수행되지 않으며 잘못된 인덱스를 사용하면 유효하지 않은 메모리에 접근할 수 있다.
+  // 러스트는 즉시 종료하여 사용자를 보호한다.
 }
