@@ -102,4 +102,10 @@ fn main() {
     "Operations result: {}, {}, {}, {}, {}, {}",
     sum, difference, product, quotient, floored, remainder
   );
+
+  // 2.1.3. boolean
+  // true, false 두 값을 가지며 크기는 1byte(8bit)이다. -> CPU가 다룰 수 있는 최소 사이즈
+  let t = true;
+  let f = false;
+  println!("Boolean: {}, {}", t, f); // Boolean: true, false
 }
