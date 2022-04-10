@@ -74,4 +74,11 @@ fn main() {
     g.wrapping_add(1),
     g.wrapping_add(2)
   ); // 255, 0, 1
+
+  // 2.1.2. 부동소수점 타입
+  // f32
+  // f64: 기본 값이며 최신 CPU에서 속도가 f32와 동일하며 더 정밀한 표현이 가능하기 때문
+  let x = 2.0; // f64
+  let y: f32 = 3.0; // f32
+  println!("Floating-point: {}, {}", x, y);
 }
