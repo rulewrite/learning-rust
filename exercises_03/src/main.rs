@@ -11,6 +11,8 @@ fn main() {
         number,
         get_fibonacci_number(number)
     );
+
+    print_twelve_days_of_christmas_lyrics();
 }
 
 const FREEZING_POINT_OF_WATER_IN_FAHRENHEIT: f64 = 32.0;
@@ -44,4 +46,39 @@ fn get_fibonacci_number(number: u64) -> u64 {
         previous = current;
     }
     return current;
+}
+
+const GIFTS_BY_DAY: [&str; 12] = [
+    "partridge in a pear tree",
+    "turtle-doves",
+    "French hens",
+    "calling birds",
+    "golden rings",
+    "geese a laying",
+    "swans a swimming",
+    "maids a-milking",
+    "ladies dancing",
+    "lords a-leaping",
+    "pipers piping",
+    "drummers drumming",
+];
+fn print_twelve_days_of_christmas_lyrics() {
+    for today in 1..13 {
+        println!("On the {} day of Christmas\nMy true love sent to me", today);
+
+        for day in (1..today + 1).rev() {
+            let gift = GIFTS_BY_DAY[day - 1];
+            let quantity = day;
+            let is_multiple_gifts = today > 1;
+
+            if quantity == 1 {
+                println!("{} {}", if is_multiple_gifts { "And a" } else { "A" }, gift);
+                continue;
+            }
+
+            println!("{} {}", quantity, gift);
+        }
+
+        println!("");
+    }
 }
