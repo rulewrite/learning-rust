@@ -7,4 +7,10 @@ fn main() {
     } else {
         println!("condition was false");
     }
+
+    // 조건은 반드시 bool 타입이어야 한다. 묵시적 형변환이 없음.
+    // if number {
+    if number != 0 {
+        println!("number was something other than zero");
+    }
 }
