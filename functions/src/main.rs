@@ -25,6 +25,12 @@ fn main() {
         x + 1 // 표현식이지만 끝에 ;을 추가할 경우 구문이 되며 반환 값이 아니게 된다.
     };
     println!("The value of y is: {}", y); // 4
+
+    let x = five();
+    println!("The value of x is: {}", x);
+
+    let x = plus_one(5);
+    println!("The value of x is: {}", x);
 }
 
 // 매개변수를 추가하며 반드시 각 매개변수의 타입을 정의해야 한다.
@@ -34,4 +40,12 @@ fn another_function(x: i32) {
 
 fn print_labeled_measurement(value: i32, unit_label: char) {
     println!("The measurement is: {}{}", value, unit_label);
+}
+
+fn five() -> i32 {
+    5 // 값을 반환하려는 표현식이기에 ; 없음
+}
+
+fn plus_one(x: i32) -> i32 {
+    x + 1
 }
