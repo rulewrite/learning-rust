@@ -4,6 +4,13 @@ fn main() {
 
     let fahrenheit = 20.0;
     println!("화씨 {}도는 섭씨로: {}", fahrenheit, to_celsius(fahrenheit));
+
+    let number = 55;
+    println!(
+        "{}번째 피보나치 수는: {}",
+        number,
+        get_fibonacci_number(number)
+    );
 }
 
 const FREEZING_POINT_OF_WATER_IN_FAHRENHEIT: f64 = 32.0;
@@ -17,4 +24,24 @@ fn to_fahrenheit(celsius: f64) -> f64 {
 // 화씨를 섭씨로 변환
 fn to_celsius(fahrenheit: f64) -> f64 {
     (fahrenheit - FREEZING_POINT_OF_WATER_IN_FAHRENHEIT) / FAHRENHEIT_AND_CELSIUS_PROPORTION
+}
+
+fn get_fibonacci_number(number: u64) -> u64 {
+    if number == 0 {
+        return 0;
+    }
+    if number == 1 {
+        return 1;
+    }
+    let mut current = 0;
+    let mut previous_of_previous = 0;
+    let mut previous = 1;
+    // 0, 1, 2, 3, 4, 5, 6, 7...
+    // 0, 1, 1, 2, 3, 5, 8, 13...
+    for _ in 2..number + 1 {
+        current = previous_of_previous + previous;
+        previous_of_previous = previous;
+        previous = current;
+    }
+    return current;
 }
