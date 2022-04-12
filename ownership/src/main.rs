@@ -19,6 +19,8 @@ fn main() {
     function_and_ownership();
 
     return_and_scope();
+
+    gives_with_takes();
 }
 
 fn string_scope() {
@@ -125,4 +127,23 @@ fn gives_ownership() -> String {
 fn takes_and_gives_back(a_string: String) -> String {
     // a_string이 스코프 안으로 들어옴
     a_string // a_string은 반환되고, 호출한 쪽의 함수로 이동됩니다.
+}
+
+/**
+ * 모든 함수가 소유권을 가졌다가 반환하는 것은 불편할 수 있다.
+ * 만약 함수로부터 받은 결과와 넘겨준 값을 함께 쓰고 싶다면?
+ */
+fn gives_with_takes() {
+    let s1 = String::from("hello");
+
+    // 하지만 이는 과한 작업으로 이를 위한 기능이 참조자란 이름으로 이미 갖고 있다.
+    let (s2, len) = calculate_length(s1);
+
+    println!("The length of '{}' is {}.", s2, len);
+}
+
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len(); // 문자열 길이를 반환
+
+    (s, length)
 }
