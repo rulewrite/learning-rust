@@ -11,6 +11,8 @@ fn main() {
     string_scope();
 
     move_value();
+
+    clone_value();
 }
 
 fn string_scope() {
@@ -38,3 +40,13 @@ fn move_value() {
     println!("{}", s2);
 } // 오직 s2만 유효하며 스코프 밖으로 넘어가면 s2만이 메모리가 해제된다.
   // 러스트는 결코 자동으로 데이터의 깊은 복사를 만들지 않는다. 따라서 모든 "자동"으로 이루어지는 복사는 실행 과정에서 효율적이라 가정할 수 있다.
+
+/**
+ * 변수와 데이터가 상호작용하는 방법: 복사(clone)
+ * 힙 데이터의 깊은 복사를 수행할 수 있음.
+ */
+fn clone_value() {
+    let s1 = String::from("hello");
+    let s2 = s1.clone(); // 명시적으로 비용이 많이 드는 코드가 실행중임을 알 수 있다.
+    println!("s1 = {}, s2 = {}", s1, s2);
+}
