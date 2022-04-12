@@ -15,6 +15,8 @@ fn main() {
     clone_value();
 
     copy_value_in_stack();
+
+    function_and_ownership();
 }
 
 fn string_scope() {
@@ -74,3 +76,27 @@ fn copy_value_in_stack() {
     // - char
     // - Copy가 가능한 타입만으로 구성된 튜플 ex. (i32, i32)는 가능
 }
+
+/**
+ * 함수에 값을 넘기는 것 또한 변수 대입과 유사하므로 move되거나 copy될 것임.
+ */
+fn function_and_ownership() {
+    let s = String::from("hello"); // s가 스코프 내에 선언됨.
+    takes_ownership(s); // s의 값이 takes_ownership 함수 안으로 이동함. 더이상 유효하지 않음.
+
+    let x = 5; // x가 스코프 안에 선언됨.
+    makes_copy(x); // x를 함수로 보냈지만 i32는 copy되므로 x를 이후에 계속 사용 가능
+
+    println!("stay: {}", x);
+    // println!("it's gone: {}", s);
+} // x는 스코프 밖으로 나가고 s도 나감, 하지만 s는 이미 이동되었으므로 아무런 일이 발생하지 않는다.
+
+fn takes_ownership(some_string: String) {
+    // some_string이 스코프내로 들어옴
+    println!("{}", some_string);
+} // some_string이 스코프 밖으로 벗어났고 some_string에 대한 drop이 호출되어 메모리가 해제됨.
+
+fn makes_copy(some_integer: i32) {
+    // some_integer가 스코프내로 들어옴
+    println!("{}", some_integer);
+} // some_integer가 스코프 밖으로 벗어났지만 별다른 일은 발생하지 않는다.
