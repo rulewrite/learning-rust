@@ -7,4 +7,13 @@ fn main() {
     s.push_str(", world!"); // 전달한 스트링 리터럴을 기존 뒤에 붙여준다.
 
     println!("{}", s);
+
+    string_scope();
 }
+
+fn string_scope() {
+    let s = String::from("hello"); // s는 여기서부터 유효
+
+    // s를 가지고 작업
+    println!("{}", s);
+} // 이 스코프는 끝났고, s는 더 이상 유효하지 않다. `drop()`
