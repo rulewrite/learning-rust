@@ -14,6 +14,8 @@ fn main() {
     println!("The length of '{}' is {}.", s2, s2.len());
 
     mutable_references();
+
+    dangling_references();
 }
 
 // 매개변수로 &String 지정함. s는 String의 참조자
@@ -69,3 +71,15 @@ fn mutable_references() {
     let r7 = &mut s3;
     println!("{}", r7);
 }
+
+fn dangling_references() {
+    let reference_to_nothing = dangle();
+}
+
+// 아래 함수는 컴파일 에러가 발생한다. "이 함수의 반환 타입은 빌린 값을 포함하고 있는데, 빌려온 실제 값은 없습니다."
+// dangle은 String의 참조자를 반환
+fn dangle() -> &String {
+    let s = String::from("hello"); // s는 새로운 String
+
+    &s // String s의 참조자를 반환
+} // 여기서 s는 스코프를 벗어나 버려지므로 메모리는 사라진다.
