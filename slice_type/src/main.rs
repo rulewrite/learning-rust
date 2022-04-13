@@ -44,6 +44,14 @@ fn main() {
     let word = first_word(&my_string_literal[..]);
     // 문자열 리터럴은 이미 문자열 슬라이스이기 때문에 슬라이스 구문 없이도 동작
     let word = first_word(my_string_literal);
+
+    // 문자열 일부를 참조하려는 것처럼 배열의 일부를 참조할 수도 있으며 동일하게 첫번째 요소와 길이를 저장한다.
+    let a = [10, 20, 30, 40, 50];
+    let slice = &a[1..3]; // 20, 30
+    for item in slice.iter() {
+        println!("{}", item);
+    }
+    assert_eq!(slice, &[20, 30]);
 }
 
 // 반환값은 슬라이스 시작 위치 참조와 요소 수로 이루어짐 (슬라이스 타입)
