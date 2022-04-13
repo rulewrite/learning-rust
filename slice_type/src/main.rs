@@ -30,10 +30,24 @@ fn main() {
     // 문자열 리터럴은 컴파일된 실행파일 내에 존재하며 특정 지점을 가리킨다. &str은 불변이므로 스트링 리터럴은 불변이다.
     let s3 = "hello, world";
     println!("{}", s3);
+
+    let my_string = String::from("hello world");
+    // 문자열의 전체 또는 일부에서도 동작
+    let word = first_word(&my_string[0..6]);
+    let word = first_word(&my_string[..]);
+    // 문자열에 대한 참조에서도 작동하며 전체 슬라이스를 의미함. (암시적 변환)
+    let word = first_word(&my_string);
+
+    let my_string_literal = "hello world";
+    // 전체 또는 부분 문자열 리터럴에서도 동작
+    let word = first_word(&my_string_literal[0..6]);
+    let word = first_word(&my_string_literal[..]);
+    // 문자열 리터럴은 이미 문자열 슬라이스이기 때문에 슬라이스 구문 없이도 동작
+    let word = first_word(my_string_literal);
 }
 
 // 반환값은 슬라이스 시작 위치 참조와 요소 수로 이루어짐 (슬라이스 타입)
-fn first_word(s: &String) -> &str {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes(); // 바이트 배열로 변환
 
     for (i, &item) in bytes // 튜플 구조 해제
