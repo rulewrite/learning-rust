@@ -12,6 +12,8 @@ fn main() {
     s2.push_str(", world!");
     change(s2);
     println!("The length of '{}' is {}.", s2, s2.len());
+
+    mutable_references();
 }
 
 // 매개변수로 &String 지정함. s는 String의 참조자
@@ -22,4 +24,32 @@ fn calculator_length(s: &String) -> usize {
 
 fn change(some_string: &mut String) {
     some_string.push_str(", world!");
+}
+
+fn mutable_references() {
+    let mut s = String::from("hello");
+
+    let r1 = &mut s;
+    // 가변 참조자는 한번에 하나만 가질 수 있으므로 아래는 실패한다.
+    // let r2 = &mut s;
+    // println!("{}, {}", r1, r2);
+    println!("{}", r1);
+
+    // r1이 사용된 후 여기서는 가능하다.
+    let r2 = &mut s;
+    println!("{}", r2);
+    // 이러한 제한 사항은 데이터 레이스를 방지할 수 있다.
+    // 1. 두 개 이상의 포인터가 동시에 같은 데이터에 접근하여
+    // 2. 그 중 적어도 하나의 포인터가 데이터를 쓴다(write).
+    // 3. 데이터에 접근 간에 동기화하를 메커니즘이 없음.
+    // 러스트는 데이터 레이스가 발생할 수 있는 코드는 컴파일 조차 안되어 문제의 발생을 막는다.
+
+    let mut s2 = String::from("hello");
+    {
+        let r3 = &mut s2;
+        r3.push_str("hello");
+    } // r3은 스코프 밖으로 벗어나므로 새로운 참조자를 만들 수 있다.
+    let r4 = &mut s2;
+    r4.push_str("hello");
+    println!("{}", s2); // hellohellohello
 }
