@@ -52,4 +52,20 @@ fn mutable_references() {
     let r4 = &mut s2;
     r4.push_str("hello");
     println!("{}", s2); // hellohellohello
+
+    // 가변 참조자와 불변 참조자를 혼용할 때도 비슷한 규칙이 있다.
+    let mut s3 = String::from("hello");
+
+    let r5 = &s3;
+    let r6 = &s3;
+    // 불변 참조자가 있는 동안 가변 참조자를 만들 수 없다.
+    // 불변 참조자의 사용자는 사용 간에 값이 바뀌리라 예상하지 않기 때문에
+    // let r7 = &mut s3; // 문제가 되는 코드
+    // println!("{} {} {}", r5, r6, r7);
+
+    println!("{} {}", r5, r6);
+
+    // 참조의 범위는 사용된 마지막 시점까지 계속된다. r5, r6는 위에 사용 후 사용되지 않으므로 아래는 컴파일 가능하다.
+    let r7 = &mut s3;
+    println!("{}", r7);
 }
