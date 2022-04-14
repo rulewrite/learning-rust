@@ -9,10 +9,13 @@ struct User {
 
 fn main() {
     // 구조체는 정의된 양식이며 User 인스턴스 생성(실체화)
-    let user1 = User {
+    // 러스트는 특정 필드만 변경할 수 있도록 허용하지 않기 때문에 인스턴스를 가변하기 위해 `mut`추가
+    let mut user1 = User {
         email: String::from("someone@example.com"),
         username: String::from("rulewrite"),
         active: true,
         sign_in_count: 1,
     };
+
+    user1.email = String::from("someone-email@example.com");
 }
