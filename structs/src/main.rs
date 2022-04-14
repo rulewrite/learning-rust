@@ -15,6 +15,18 @@ fn main() {
         String::from("rulewrite"),
     );
     user1.email = String::from("someone-email@example.com");
+
+    let user2 = User {
+        email: String::from("another@example.com"),
+        // username: user1.username,
+        // active: user1.active,
+        // sign_in_count: user1.sign_in_count,
+        // 아래와 같이 축약 가능. js에서는 상위에 구조해제 후 덮어쓰는 개념이지만 러스트는 아래에 둠.
+        ..user1
+    };
+
+    // println!("{}", user1.username); // user1.username은 move 되어 사용 불가
+    println!("{}, {}", user2.username, user2.email);
 }
 
 fn build_user(email: String, username: String) -> User {
