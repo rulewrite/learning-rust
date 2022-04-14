@@ -7,6 +7,10 @@ struct User {
     active: bool,
 }
 
+// 구조체명으로 의미를 부여하고 필드의 타입은 지정할 수 있으나 명명은 할 수 없는 튜플구조체
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
 fn main() {
     // 구조체는 정의된 양식이며 User 인스턴스 생성(실체화)
     // 러스트는 특정 필드만 변경할 수 있도록 허용하지 않기 때문에 인스턴스를 가변하기 위해 `mut`추가
@@ -27,6 +31,10 @@ fn main() {
 
     // println!("{}", user1.username); // user1.username은 move 되어 사용 불가
     println!("{}, {}", user2.username, user2.email);
+
+    // 둘은 서로 다른 구조체의 인스턴스로 필드의 타입이 모두 같더라도 둘은 다른 타입이다.
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
 }
 
 fn build_user(email: String, username: String) -> User {
