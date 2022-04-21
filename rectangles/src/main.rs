@@ -9,6 +9,11 @@ impl Rectangle {
     fn area(&self) -> u32 {
         self.width * self.height
     }
+
+    // 필드와 동일한 이름의 메소드도 사용할 수 있다.
+    fn width(&self) -> bool {
+        self.width > 0
+    }
 }
 
 fn main() {
@@ -29,4 +34,6 @@ fn main() {
 
     // 소유권이 필요치 않으므로 rect1의 참조를 전달한다.
     dbg!(&rect1);
+
+    println!("The rectangle has a nonzero width: it is {}", rect1.width());
 }
