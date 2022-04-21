@@ -4,6 +4,13 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    // & 불변으로 빌림
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
 fn main() {
     let scale = 2;
     let rect1 = Rectangle {
@@ -15,15 +22,11 @@ fn main() {
 
     println!(
         "The area of the rectangle is {} square pixels.",
-        area(&rect1)
+        rect1.area()
     );
 
     println!("rect1 is {:#?}", rect1);
 
     // 소유권이 필요치 않으므로 rect1의 참조를 전달한다.
     dbg!(&rect1);
-}
-
-fn area(rectangle: &Rectangle) -> u32 {
-    rectangle.width * rectangle.height
 }
