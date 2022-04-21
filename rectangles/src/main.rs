@@ -15,10 +15,6 @@ impl Rectangle {
         self.width > 0
     }
 
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        self.width > other.width && self.height > other.height
-    }
-
     /**
      * self 파라미터를 갖지 않아도 선언할 수 있다.
      * 연관 함수(associated functions)
@@ -32,6 +28,13 @@ impl Rectangle {
             width: size,
             height: size,
         }
+    }
+}
+
+// 여러 imple 블록을 가질 수 있음.
+impl Rectangle {
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
     }
 }
 
