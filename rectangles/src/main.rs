@@ -18,6 +18,21 @@ impl Rectangle {
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
+
+    /**
+     * self 파라미터를 갖지 않아도 선언할 수 있다.
+     * 연관 함수(associated functions)
+     * - 구조체와 연관되어 있기 때문에 "연관"
+     * - 인스턴스가 아니기 때문에 여전히 "함수"
+     * 생성자로써 많이 사용된다. ex. String::from()
+     * 해당 함수는 구조체의 네임스페이스에 있으며 모듈에 의해 생성된 네임스페이스에서도 :: 연산자가 사용된다.
+     */
+    fn square(size: u32) -> Rectangle {
+        Rectangle {
+            width: size,
+            height: size,
+        }
+    }
 }
 
 fn main() {
@@ -51,4 +66,7 @@ fn main() {
 
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    let sqare1 = Rectangle::square(3);
+    println!("sqare1 is {:#?}", sqare1);
 }
