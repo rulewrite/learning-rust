@@ -50,6 +50,29 @@ fn main() {
 
     let m = Message::Write(String::from("Hello"));
     m.call();
+
+    // 표준 라이브러리에서 정의된 열거형 Option
+    // Option 타입은 값이 있거나 없는 흔히 발생할 수 있는 은한 케이스를 나타낼 수 있어 많이 사용된다.
+    // 타입 시스템 관점에서 보면 컴파일러가 발생할 수 있는 모든 경우를 처리했는지 체크할 수 있다.
+
+    /*
+    러스트에서는 null이 없다.
+    대신에 값의 존재나 부재의 개념을 표현할 수 있는 열거형인 Option<T>가 다음과 같이 정의되어 있다.
+    enum Option<T> {
+      Some(T),
+      None,
+    }
+    */
+
+    // Option<T>는 기본적으로 포함되어 있어 명시적으로 스코프로 가져오지 않아도 사용할 수 있으며
+    // Option 열거형의 variants도 동일해 Option::을 붙이지 않고 Some과 None을 바로 사용할 수 있다.
+    // 다음은 숫자와 문자열 타입을 갖는 Option 값을 할당하는 예이다.
+    let some_number = Some(5); // 타입은 Option<i32>
+    let some_string = Some("a string"); // 타입은 Option<&str>
+                                        // Some variants에 값을 지정했기에 타입을 추론할 수 있다.
+
+    // None을 대입하는 경우 타입 추론이 불가해 Option 타입에 어노테이션이 필요하다.
+    let absent_number: Option<i32> = None;
 }
 
 // 열거형 타입을 받는 함수를 정의할 수 있다.
