@@ -10,6 +10,24 @@ enum IpAddr {
     V6(String),
 }
 
+// 각 variants에 다양한 타입이 설정
+enum Message {
+    Quit,                       // 연관 데이터가 없음
+    Move { x: i32, y: i32 },    // 익명 구조체
+    Write(String),              // String
+    ChangeColor(i32, i32, i32), // 세개의 i32
+}
+
+// 위 Message 열거형은 다음과 같이 분리될 수 있다. 하지만 모든 variants가 `Message` 타입으로 그룹화되며
+// 아래 처럼 각기 다른 타입을 갖는 여러 구조체를 사용한다면 메시지 중 어떤 한가지를 인자로 받는 함수를 정의하기 어렵다.
+struct QuitMessage; // 유닛 구조체
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String); // 튜플 구조체
+struct ChangeColorMessage(i32, i32, i32); // 튜플 구조체
+
 fn main() {
     // 열거형의 variants는 식별자 IpAddrKind에 의한 네임 스페이스가 생성된다.
     let four = IpAddrKind::V4; // 열거형의 인스턴스를 생성
