@@ -61,4 +61,20 @@ fn main() {
         // 이전에 언급한 패턴과 일치하지 않는 값을 사용하지 않을 것이며 어떤 코드도 실행하지 않는다고 러스트에게 명시적으로 알려줄 수 있다.
         _ => (),
     }
+
+    let config_max = Some(3u8);
+
+    // 하나의 패턴만 매칭하려는 경우 match 방식은 보일러 플레이트를 낳는다.
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {}", max),
+        _ => (),
+    }
+
+    // 하나의 패턴만 매칭 하고 나머지 경우는 무시해야 할 경우 if let을 사용하면 간단히 표현할 수 있다. (Syntax sugar)
+    // if let 패턴 = 표현식
+    // 여기서 패턴은 Some(max)이고 max에 내부 값이 바인딩 된다.
+    // 다만 match에서 시행되는 철처한 검사를 잃게 되므로 match를 쓸지 if let을 쓸지 적절한 트레이드 오프를 선택해야 한다.
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
 }
