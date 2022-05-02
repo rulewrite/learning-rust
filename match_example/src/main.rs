@@ -77,4 +77,21 @@ fn main() {
     if let Some(max) = config_max {
         println!("The maximum is configured to be {}", max);
     }
+
+    let mut count = 0;
+    let coin = Coin::Quarter(UsState::Alaska);
+    match coin {
+        Coin::Quarter(state) => println!("State quater from {:?}!", state),
+        _ => count += 1, // 쿼터 동전이 아닌 경우 카운트
+    }
+
+    let coin = Coin::Penny;
+    if let Coin::Quarter(state) = coin {
+        println!("State quater from {:?}!", state);
+    } else {
+        // if let과 함께 else를 사용할 수 있다.
+        count += 1;
+    }
+
+    println!("count {}", count);
 }
