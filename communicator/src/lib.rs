@@ -1,3 +1,8 @@
+// communicator
+//  ├── client
+//  └── network
+//      └── server
+
 mod client {
     fn connect() {}
 }
@@ -8,6 +13,12 @@ mod network {
 
     // network::connect()로 호출
     fn connect() {}
+
+    // network의 내부 모듈 server
+    mod server {
+        // network::server::connect()
+        fn connect() {}
+    }
 }
 
 #[cfg(test)]
