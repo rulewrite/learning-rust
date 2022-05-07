@@ -3,7 +3,7 @@
 //  └── network
 //      └── server
 
-mod client; // contents of client.rs
+pub mod client; // contents of client.rs
 
 // mod 모듈명
 mod network;

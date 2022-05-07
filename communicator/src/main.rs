@@ -6,5 +6,5 @@ extern crate communicator;
 
 fn main() {
   // 우리가 만들었던 모든 모듈은 communicator라는 루트 모듈아래 존재한다.
-  // communicator::client::connect();
+  communicator::client::connect();
 }
