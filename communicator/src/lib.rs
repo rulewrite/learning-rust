@@ -3,9 +3,7 @@
 //  └── network
 //      └── server
 
-mod client {
-    fn connect() {}
-}
+mod client; // contents of client.rs
 
 // mod 모듈명
 mod network {
