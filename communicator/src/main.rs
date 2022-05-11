@@ -17,6 +17,15 @@ pub mod a {
 // use 구문에 함수를 명시하여 스코프 내로 함수를 가져올 수도 있다.
 use a::series::of::nested_modules;
 
+enum TrafficLight {
+  Red,
+  Yellow,
+  Green,
+}
+
+// enum 또한 모듈과 비슷한 네임스페이스를 형성하기에 열거형의 variant도 use를 사용하여 스코프내로 가져올 수 있다.
+use TrafficLight::{Red, Yellow};
+
 fn main() {
   // 우리가 만들었던 모든 모듈은 communicator라는 루트 모듈아래 존재한다.
   communicator::client::connect();
@@ -25,4 +34,8 @@ fn main() {
   // a::series::of::nested_modules();
   // of::nested_modules();
   nested_modules();
+
+  let red = Red;
+  let yellow = Yellow;
+  let green = TrafficLight::Green;
 }
