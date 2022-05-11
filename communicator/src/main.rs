@@ -24,7 +24,10 @@ enum TrafficLight {
 }
 
 // enum 또한 모듈과 비슷한 네임스페이스를 형성하기에 열거형의 variant도 use를 사용하여 스코프내로 가져올 수 있다.
-use TrafficLight::{Red, Yellow};
+// use TrafficLight::{Red, Yellow};
+// *(glob)를 사용하여 네임스페이스 내의 모든 아이템을 가져올 수 있다.
+// 단, 글롭은 예상한것보다 많은 아이템을 끌고오기 때문에 이름 충돌의 원인이 될 수 있다.
+use TrafficLight::*;
 
 fn main() {
   // 우리가 만들었던 모든 모듈은 communicator라는 루트 모듈아래 존재한다.
@@ -37,5 +40,6 @@ fn main() {
 
   let red = Red;
   let yellow = Yellow;
-  let green = TrafficLight::Green;
+  // let green = TrafficLight::Green;
+  let green = Green;
 }
