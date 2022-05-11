@@ -16,9 +16,13 @@ pub mod network;
 //  └── tests
 #[cfg(test)]
 mod tests {
+    use super::client;
+
     #[test]
     fn it_works() {
         // 테스트 모듈 내이기 때문에 부모로 할번 올라갔다가 client로 접근할 필요가 있다.
-        super::client::connect();
+        // super::client::connect();
+        // use를 사용할 수도 있다.
+        client::connect();
     }
 }
