@@ -1,25 +1,12 @@
 // mod 모듈명
-mod front_of_house {
-    // 모듈 내부에는 다른 모듈이 존재할 수 있다.
-    // 아울러 구조체, 열거형, 상수, 트레잇, 함수 등을 보유 할 수 있다.
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-
-        fn seat_at_table() {}
-    }
-
-    pub mod serving {
-        fn take_order() {}
-
-        pub fn serve_order() {}
-
-        fn take_payment() {}
-    }
-}
+// {}을 사용하지 않고 세미콜론을 사용하면 러스트는 모듈과 동일한 이름을 가진 파일에서 모듈의 내용을 로드한다.
+mod front_of_house;
 
 fn serve_order() {}
 
 mod back_of_house {
+    // 모듈 내부에는 다른 모듈이 존재할 수 있다.
+    // 아울러 구조체, 열거형, 상수, 트레잇, 함수 등을 보유 할 수 있다.
     fn fix_incorrect_order() {
         cook_order();
         // super::front_of_house::serving::serve_order();
