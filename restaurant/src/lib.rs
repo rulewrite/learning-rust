@@ -42,6 +42,11 @@ mod back_of_house {
             }
         }
     }
+
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
 }
 
 pub fn eat_at_restaurant() {
@@ -59,6 +64,9 @@ pub fn eat_at_restaurant() {
     // seasonal_fruit 필드는 비공개로 액세스 불가
     // meal.seasonal_fruit = String::from("blueberries");
     println!("I'd like {} toast please", meal.toast);
+
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
 }
 
 #[cfg(test)]
