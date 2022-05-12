@@ -49,7 +49,8 @@ mod back_of_house {
     }
 }
 
-use crate::front_of_house::hosting;
+// use crate::front_of_house::hosting;
+use self::front_of_house::hosting; // 상대 경로
 
 pub fn eat_at_restaurant() {
     // Absolute path
