@@ -1,6 +1,6 @@
 // mod 모듈명
 // {}을 사용하지 않고 세미콜론을 사용하면 러스트는 모듈과 동일한 이름을 가진 파일에서 모듈의 내용을 로드한다.
-mod front_of_house;
+pub mod front_of_house;
 
 fn serve_order() {}
 
