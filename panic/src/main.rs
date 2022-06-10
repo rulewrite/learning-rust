@@ -21,4 +21,8 @@ fn main() {
             }
         },
     };
+
+    let f = File::open("hello2.txt").unwrap();
+
+    let f = File::open("hello3.txt").expect("Failed to open hello.txt");
 }
