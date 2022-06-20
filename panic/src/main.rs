@@ -27,6 +27,7 @@ fn main() {
     // let f = File::open("hello3.txt").expect("Failed to open hello.txt");
 
     read_username_from_file();
+    read_username_from_file2();
 }
 
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -43,4 +44,11 @@ fn read_username_from_file() -> Result<String, io::Error> {
         Ok(_) => Ok(s),
         Err(e) => Err(e),
     }
+}
+
+fn read_username_from_file2() -> Result<String, io::Error> {
+    let mut f = File::open("hello5.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
 }
