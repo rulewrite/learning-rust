@@ -20,5 +20,5 @@ fn main() {
         ),
     };
 
-    println!("New article avilable! {}", article.summarize());
+    // println!("New article avilable! {}", article.summarize());
 }
