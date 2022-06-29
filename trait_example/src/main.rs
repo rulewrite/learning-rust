@@ -1,5 +1,9 @@
 use trait_example::{NewsArticle, Summary, Tweet};
 
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
 fn main() {
     let tweet = Tweet {
         username: String::from("horse_ebooks"),
@@ -9,6 +13,7 @@ fn main() {
     };
 
     println!("1 new tweet: {}", tweet.summarize());
+    notify(&tweet);
 
     let article = NewsArticle {
         headline: String::from("Penguins win the Stanley Cup Championship!"),
