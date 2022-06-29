@@ -1,4 +1,4 @@
-use trait_example::{Summary, Tweet};
+use trait_example::{NewsArticle, Summary, Tweet};
 
 fn main() {
     let tweet = Tweet {
@@ -9,4 +9,16 @@ fn main() {
     };
 
     println!("1 new tweet: {}", tweet.summarize());
+
+    let article = NewsArticle {
+        headline: String::from("Penguins win the Stanley Cup Championship!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Iceburgh"),
+        content: String::from(
+            "The Pittsburgh Penguins once again are the best \
+             hockey team in the NHL.",
+        ),
+    };
+
+    println!("New article avilable! {}", article.summarize());
 }
