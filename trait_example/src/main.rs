@@ -6,7 +6,10 @@ pub fn notify<T: Summary>(item1: &T, item2: &T) {
     println!("Breaking news! {}", item2.summarize());
 }
 
-pub fn notify2<T: Summary + Display>(item1: &T, item2: &T) {
+pub fn notify2<T>(item1: &T, item2: &T)
+where
+    T: Summary + Display,
+{
     println!("Breaking news! {}", item1.summarize());
     println!("Breaking news! {}", item2.summarize());
 }
