@@ -10,6 +10,12 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 
+impl<'a> ImportantExcerpt<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+}
+
 fn main() {
     let string1 = String::from("abcd");
     let string2 = "xyz";
