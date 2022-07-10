@@ -6,11 +6,15 @@
 // imperative style for loops. Recreate this counting functionality using
 // iterators. Only the two iterator methods (count_iterator and
 // count_collection_iterator) need to be modified.
+// 러스틀링 예제의 진행 상황을 추적하는 간단한 모델을 정의하자.
+// 진행 상황은 해시 맵을 사용하여 모델링되며 예제명이 key, 진행 상황이 value가 된다.
+// 주어진 진행상황에서 예제 횟수를 계싼하기 위해 두가지 계산 함수가 생성되었다.
+// 이러한 계산 함수는 순회에 대한 명령형 스타일을 사용한다.
+// 다음을 사용하여 이 계산 함수를 다시 만들자.
+// 이터레이터와 두 개의 이터레이터 메소드 (count_iterator 및 count_collection_iterator)만 수정하면 된다.
 // Execute `rustlings hint iterators5` for hints.
 //
 // Make the code compile and the tests pass.
-
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -34,6 +38,7 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
     // map = { "variables1": Complete, "from_str": None, ... }
+    map.values().filter(|&p| p == &value).count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -52,6 +57,10 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // collection is a slice of hashmaps.
     // collection = [{ "variables1": Complete, "from_str": None, ... },
     //     { "variables2": Complete, ... }, ... ]
+    collection
+        .iter()
+        .map(|map| map.values().filter(|&p| p == &value).count())
+        .sum()
 }
 
 #[cfg(test)]
