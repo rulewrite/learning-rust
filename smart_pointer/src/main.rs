@@ -16,6 +16,10 @@ impl<T> MyBox<T> {
     }
 }
 
+fn hello(name: &str) {
+    println!("Hello, {}!", name);
+}
+
 fn main() {
     let x = 5;
     let y = &x;
@@ -34,4 +38,7 @@ fn main() {
 
     assert_eq!(5, x);
     assert_eq!(5, *y);
+
+    let m = MyBox::new(String::from("Rust"));
+    hello(&m);
 }
