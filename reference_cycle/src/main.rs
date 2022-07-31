@@ -43,6 +43,7 @@ fn main() {
     // 다음 줄의 주석을 제거하여 순환이 있는지 확인한다.
     // 이것은 스택 오버플로가 발생한다.
     // println!("a next item = {:?}", a.tail());
+    println!("------------------------------------");
 
     let leaf = Rc::new(Node {
         value: 3,
@@ -50,15 +51,41 @@ fn main() {
         children: RefCell::new(vec![]),
     });
 
+    // println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
+
+    {
+        let branch = Rc::new(Node {
+            value: 5,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        });
+
+        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+
+        println!(
+            "branch strong = {}, weak = {}",
+            Rc::strong_count(&branch),
+            Rc::weak_count(&branch)
+        );
+
+        println!(
+            "leaf strong = {}, weak = {}",
+            Rc::strong_count(&leaf),
+            Rc::weak_count(&leaf)
+        );
+
+        println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    }
+
     println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
-
-    let branch = Rc::new(Node {
-        value: 5,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
-    });
-
-    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
-
-    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
 }
