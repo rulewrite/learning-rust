@@ -17,6 +17,11 @@ impl List {
     }
 }
 
+struct Node {
+    value: i32,
+    children: RefCell<Vec<Rc<Node>>>,
+}
+
 fn main() {
     let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
     println!("a 초기 rc count = {}", Rc::strong_count(&a));
@@ -36,4 +41,14 @@ fn main() {
     // 다음 줄의 주석을 제거하여 순환이 있는지 확인한다.
     // 이것은 스택 오버플로가 발생한다.
     // println!("a next item = {:?}", a.tail());
+
+    let leaf = Rc::new(Node {
+        value: 3,
+        children: RefCell::new(vec![]),
+    });
+
+    let branch = Rc::new(Node {
+        value: 5,
+        children: RefCell::new(vec![Rc::clone(&leaf)]),
+    });
 }
